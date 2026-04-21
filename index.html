@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Três Iniciados — Biblioteca de Conhecimento</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d0520;--bg2:#1a0a2e;--bg3:#251545;--gold:#d4af37;--gold-dark:#a08520;--purple:#6a0dad;--text:#e8e0f0;--dim:#8a7aa0}
+body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;line-height:1.7}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+header{text-align:center;padding:60px 20px 40px;background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+header .symbol{font-size:3em;margin-bottom:15px}
+header h1{font-family:'Playfair Display',serif;font-size:2.8em;color:var(--gold);margin-bottom:8px}
+header h2{font-family:'Playfair Display',serif;font-size:1.2em;color:var(--dim);font-weight:400;margin-bottom:20px}
+header .tagline{font-size:1.1em;color:var(--text);max-width:600px;margin:0 auto}
+.intro{text-align:center;padding:40px 20px;max-width:700px;margin:0 auto}
+.intro p{color:var(--dim);font-size:1.05em;margin-bottom:15px}
+.intro .warning{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:20px 25px;margin:25px 0;color:var(--gold);font-weight:700}
+/* GATE */
+.gate-section{text-align:center;padding:40px 20px;max-width:700px;margin:0 auto}
+.gate-section h3{font-family:'Playfair Display',serif;font-size:1.8em;color:var(--gold);margin-bottom:15px}
+.gate-section p{color:var(--dim);margin-bottom:25px}
+.gate-form{text-align:left;background:var(--bg2);border:1px solid rgba(212,175,55,0.15);border-radius:16px;padding:30px}
+.gate-form .q{margin-bottom:25px}
+.gate-form .q label{display:block;color:var(--gold);font-weight:700;margin-bottom:10px;font-size:1.05em}
+.gate-form .q .opts{display:flex;flex-direction:column;gap:8px}
+.gate-form .q .opt{background:var(--bg3);border:1px solid rgba(212,175,55,0.1);border-radius:8px;padding:12px 16px;cursor:pointer;transition:all 0.2s}
+.gate-form .q .opt:hover{border-color:var(--gold);background:rgba(212,175,55,0.05)}
+.gate-form .q .opt.selected{border-color:var(--gold);background:rgba(212,175,55,0.1)}
+.gate-form .q .opt input{display:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);color:#000;font-weight:700;border:none;padding:15px 40px;border-radius:8px;font-size:1.1em;cursor:pointer;transition:all 0.3s;display:inline-block;margin-top:20px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 5px 20px rgba(212,175,55,0.3)}
+/* RESULT */
+.gate-result{text-align:center;padding:40px 20px;max-width:700px;margin:0 auto;display:none}
+.gate-result.approved h3{color:#00e676}
+.gate-result.reproved h3{color:#ff5252}
+.gate-result h3{font-family:'Playfair Display',serif;font-size:2em;margin-bottom:15px}
+.gate-result p{color:var(--dim);margin-bottom:20px;font-size:1.1em}
+/* BOOKS GRID */
+.books-section{padding:40px 0}
+.books-section h3{font-family:'Playfair Display',serif;font-size:1.8em;color:var(--gold);text-align:center;margin-bottom:30px}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.book-card{background:var(--bg2);border:1px solid rgba(212,175,55,0.1);border-radius:12px;padding:25px;transition:all 0.3s;position:relative;overflow:hidden}
+.book-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.3)}
+.book-card .emoji{font-size:2.5em;margin-bottom:12px}
+.book-card h4{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.15em;margin-bottom:8px}
+.book-card .author{color:var(--dim);font-size:0.9em;margin-bottom:10px}
+.book-card .desc{color:var(--text);font-size:0.95em;margin-bottom:15px}
+.book-card .chapters{color:var(--dim);font-size:0.85em;margin-bottom:15px}
+.book-card .price{font-size:1.4em;color:var(--gold);font-weight:700;margin-bottom:10px}
+.book-card .price .old{text-decoration:line-through;color:var(--dim);font-size:0.7em;margin-left:8px}
+.book-card .btn-buy{display:block;text-align:center;background:var(--gold);color:#000;padding:10px;border-radius:6px;text-decoration:none;font-weight:700;transition:all 0.2s}
+.book-card .btn-buy:hover{background:#e5c04a}
+.book-card.locked{opacity:0.5;pointer-events:none}
+.book-card.locked::after{content:'🔒';position:absolute;top:10px;right:15px;font-size:1.5em}
+/* WARMUP PLAN */
+.warmup{background:var(--bg2);border-radius:16px;padding:30px;margin:40px 0;border:1px solid rgba(212,175,55,0.1)}
+.warmup h3{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.5em;margin-bottom:20px;text-align:center}
+.warmup .phase{margin-bottom:25px;padding-left:20px;border-left:3px solid var(--gold)}
+.warmup .phase h4{color:var(--gold);margin-bottom:8px}
+.warmup .phase p{color:var(--dim);font-size:0.95em}
+.warmup .phase .day{color:var(--purple);font-weight:700}
+.warmup .projection{text-align:center;margin-top:30px;padding:20px;background:rgba(0,230,118,0.05);border:1px solid rgba(0,230,118,0.15);border-radius:12px}
+.warmup .projection .val{font-size:2em;color:#00e676;font-weight:700}
+footer{text-align:center;padding:40px;color:var(--dim);font-size:0.9em}
+@media(max-width:600px){header h1{font-size:2em}.books-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="symbol">☿</div>
+<h1>Três Iniciados</h1>
+<h2>Biblioteca de Conhecimento Hermético</h2>
+<p class="tagline">6 ebooks nascidos da experiência dos poetas — para quem tem mérito pra acessar</p>
+</header>
+
+<div class="container">
+
+<div class="intro">
+<p>Esta biblioteca não é pra todo mundo. Não vendemos sonhos — vendemos sabedoria aplicada. Cada ebook foi forjado nas lições dos maiores poetas-rappers do Brasil: Filipe Ret, Djonga e Delacruz.</p>
+<p>A fé sem movimento é morta. E nós não vendemos pra mortos.</p>
+<div class="warning">⚠️ Para acessar os ebooks, você precisa provar que tem mérito no tema. Responda o quiz abaixo com honestidade. Quem passar, compra. Quem não passar, estuda e volta depois.</div>
+</div>
+
+<!-- GATE -->
+<div class="gate-section" id="gate-section">
+<h3>🔥 Prove Seu Mérito</h3>
+<p>Responda 5 perguntas sobre mindset, ação e prosperidade. Precisamos saber se você tá pronto pra esse conhecimento.</p>
+
+<div class="gate-form" id="gate-form">
+<div class="q" data-correct="2">
+<label>1. O que significa "fé sem movimento" na prática?</label>
+<div class="opts">
+<div class="opt" onclick="selectOpt(this,0)"><input type="radio" name="q1">Acreditar que tudo vai dar certo sem fazer nada</div>
+<div class="opt" onclick="selectOpt(this,1)"><input type="radio" name="q1">Rezar todo dia pedindo prosperidade</div>
+<div class="opt" onclick="selectOpt(this,2)"><input type="radio" name="q1">Agir antes de ter certeza, dar o primeiro passo mesmo com medo</div>
+<div class="opt" onclick="selectOpt(this,3)"><input type="radio" name="q1">Postar frases motivacionais nas redes sociais</div>
+</div>
+</div>
+
+<div class="q" data-correct="1">
+<label>2. Qual é o "ativo número 1" segundo os Três Iniciados?</label>
+<div class="opts">
+<div class="opt" onclick="selectOpt(this,0)"><input type="radio" name="q2">Dinheiro na conta</div>
+<div class="opt" onclick="selectOpt(this,1)"><input type="radio" name="q2">Saúde física e mental</div>
+<div class="opt" onclick="selectOpt(this,2)"><input type="radio" name="q2">Redes sociais com muitos seguidores</div>
+<div class="opt" onclick="selectOpt(this,3)"><input type="radio" name="q2">Diploma universitário</div>
+</div>
+</div>
+
+<div class="q" data-correct="2">
+<label>3. Djonga disse "eu sou o dono da caneta que destrói impérios". O que ele quis dizer?</label>
+<div class="opts">
+<div class="opt" onclick="selectOpt(this,0)"><input type="radio" name="q3">Que ele é um escritor profissional</div>
+<div class="opt" onclick="selectOpt(this,1)"><input type="radio" name="q3">Que ele gosta de canetas caras</div>
+<div class="opt" onclick="selectOpt(this,2)"><input type="radio" name="q3">Que a palavra tem poder de criar e destruir realidades</div>
+<div class="opt" onclick="selectOpt(this,3)"><input type="radio" name="q3">Que ele quer derrubar o governo</div>
+</div>
+</div>
+
+<div class="q" data-correct="0">
+<label>4. O que é "momentum" no contexto de empreendedorismo?</label>
+<div class="opts">
+<div class="opt" onclick="selectOpt(this,0)"><input type="radio" name="q4">A acumulação de ações pequenas e consistentes que geram resultados crescentes</div>
+<div class="opt" onclick="selectOpt(this,1)"><input type="radio" name="q4">Um surto de produtividade numa semana</div>
+<div class="opt" onclick="selectOpt(this,2)"><input type="radio" name="q4">Viralizar um post nas redes sociais</div>
+<div class="opt" onclick="selectOpt(this,3)"><input type="radio" name="q4">Conseguir muitos seguidores de uma vez</div>
+</div>
+</div>
+
+<div class="q" data-correct="1">
+<label>5. "A vida não é o que eu posto" — qual é a lição principal dessa frase do Ret?</label>
+<div class="opts">
+<div class="opt" onclick="selectOpt(this,0)"><input type="radio" name="q5">Que devemos postar menos nas redes sociais</div>
+<div class="opt" onclick="selectOpt(this,1)"><input type="radio" name="q5">Que a essência é mais importante que a aparência — trabalhe em silêncio</div>
+<div class="opt" onclick="selectOpt(this,2)"><input type="radio" name="q5">Que as redes sociais são ruins</div>
+<div class="opt" onclick="selectOpt(this,3)"><input type="radio" name="q5">Que devemos postar mais conteúdo autêntico</div>
+</div>
+</div>
+
+<div style="text-align:center">
+<button class="btn-gold" onclick="checkGate()">🔮 Verificar Mérito</button>
+</div>
+</div>
+</div>
+
+<!-- GATE RESULT -->
+<div class="gate-result" id="gate-approved">
+<h3>✅ Você Tem Mérito</h3>
+<p>Parabéns — você demonstrou que entende os princípios. Os ebooks estão liberados pra você.</p>
+<p style="color:var(--dim);font-size:0.95em">Acesso liberado à biblioteca completa. Escolha seus ebooks abaixo.</p>
+<button class="btn-gold" onclick="showBooks()">📚 Acessar Biblioteca</button>
+</div>
+
+<div class="gate-result" id="gate-reproved">
+<h3>❌ Ainda Não é Sua Hora</h3>
+<p>Você acertou <span id="score">0</span>/5. Precisa de pelo menos 4/5 pra acessar.</p>
+<p style="color:var(--dim);font-size:0.95em">Isso não é um "não" — é um "ainda não". Estude, reflita, e volte quando estiver pronto. Os ebooks vão estar aqui.</p>
+<button class="btn-gold" onclick="resetGate()">🔄 Tentar Novamente</button>
+</div>
+
+<!-- BOOKS (hidden until gate passed) -->
+<div class="books-section" id="books-section" style="display:none">
+<h3>📚 Biblioteca Disponível</h3>
+<div class="books-grid">
+
+<div class="book-card">
+<div class="emoji">🔥</div>
+<h4>A Fé Sem Movimento é Morta</h4>
+<div class="author">Três Iniciados</div>
+<div class="desc">7 Leis Para Transformar Pensamento em Resultado</div>
+<div class="chapters">7 capítulos • ~12.000 palavras</div>
+<div class="price">R$19,90 <span class="old">R$39,90</span></div>
+<a class="btn-buy" href="https://pay.kiwify.com.br/qC8YHzK" target="_blank">Comprar Agora</a>
+</div>
+
+<div class="book-card">
+<div class="emoji">💎</div>
+<h4>Rico de Saúde e de Amigo</h4>
+<div class="author">Três Iniciados</div>
+<div class="desc">A Verdadeira Riqueza Que Ninguém Te Contou</div>
+<div class="chapters">8 capítulos • ~13.000 palavras</div>
+<div class="price">R$19,90 <span class="old">R$39,90</span></div>
+<a class="btn-buy" href="https://pay.kiwify.com.br/xcL4QxC" target="_blank">Comprar Agora</a>
+</div>
+
+<div class="book-card">
+<div class="emoji">✍️</div>
+<h4>O Dono da Caneta</h4>
+<div class="author">Três Iniciados</div>
+<div class="desc">Como Suas Palavras Criam Realidades</div>
+<div class="chapters">9 capítulos • ~14.000 palavras</div>
+<div class="price">R$24,90 <span class="old">R$49,90</span></div>
+<a class="btn-buy" href="https://pay.kiwify.com.br/D4NExoo" target="_blank">Comprar Agora</a>
+</div>
+
+<div class="book-card">
+<div class="emoji">🎭</div>
+<h4>A Vida Não é o Que Eu Posto</h4>
+<div class="author">Três Iniciados</div>
+<div class="desc">Guia de Autenticidade na Era Digital</div>
+<div class="chapters">8 capítulos • ~13.000 palavras</div>
+<div class="price">R$19,90 <span class="old">R$39,90</span></div>
+<a class="btn-buy" href="https://pay.kiwify.com.br/qC8YHzK" target="_blank">Comprar Agora</a>
+</div>
+
+<div class="book-card">
+<div class="emoji">💰</div>
+<h4>Prosperar Não é Pecado</h4>
+<div class="author">Três Iniciados</div>
+<div class="desc">Destravando a Mentalidade de Abundância</div>
+<div class="chapters">9 capítulos • ~14.500 palavras</div>
+<div class="price">R$24,90 <span class="old">R$49,90</span></div>
+<a class="btn-buy" href="https://pay.kiwify.com.br/xcL4QxC" target="_blank">Comprar Agora</a>
+</div>
+
+<div class="book-card">
+<div class="emoji">⚡</div>
+<h4>Obstinado</h4>
+<div class="author">Três Iniciados</div>
+<div class="desc">A Arte de Não Desistir Quando Tudo Contra</div>
+<div class="chapters">10 capítulos • ~15.000 palavras</div>
+<div class="price">R$24,90 <span class="old">R$49,90</span></div>
+<a class="btn-buy" href="https://pay.kiwify.com.br/D4NExoo" target="_blank">Comprar Agora</a>
+</div>
+
+</div>
+</div>
+
+<!-- WARM-UP PLAN -->
+<div class="warmup" id="warmup-plan" style="display:none">
+<h3>📈 Plano de Aquecimento — 4 Dias → Faturamento no Dia 12</h3>
+
+<div class="phase">
+<h4>🔥 FASE 1 — Aquecimento (Dias 1-4)</h4>
+<p class="day">Objetivo: Criar expectativa + lista de espera</p>
+<p><strong>Dia 1:</strong> Posta 3 stories no Instagram com "teaser" dos ebooks — cita uma frase forte de cada livro sem revelar o conteúdo. "A fé sem movimento é morta. Amanhã eu explico por quê." CTA: "Me manda 🔥 se quiser acesso antecipado."</p>
+<p><strong>Dia 2:</strong> Abre lista de espera via link na bio (Google Forms simples). Posta 1 reel curto (30s) com a frase mais impactante de "Obstinado". WhatsApp status com "Quem tá na lista recebe 50% off no lançamento."</p>
+<p><strong>Dia 3:</strong> Envia mensagem personalizada pros leads da lista. Posta 1 carrossel no Instagram: "5 coisas que aprendi com Djonga e Ret sobre dinheiro". Final: "O ebook completo sai amanhã pra quem tá na lista."</p>
+<p><strong>Dia 4:</strong> Último teaser: grava 1 áudio de 2 min no WhatsApp/Telegram com o "Teste de Mérito" — "Só compra quem tem mérito. Responde aqui." Cria senso de exclusividade e urgência.</p>
+</div>
+
+<div class="phase">
+<h4>💰 FASE 2 — Lançamento Suave (Dias 5-8)</h4>
+<p class="day">Objetivo: Primeiras vendas + prova social</p>
+<p><strong>Dia 5:</strong> LANÇAMENTO. Envia link pros da lista de espera com desconto de 40%. Posta story de "abriu as portas". Primeiros 10 compradores ganham bônus (um capítulo extra ou grupo VIP).</p>
+<p><strong>Dia 6:</strong> Coleta os primeiros depoimentos. Reposta prints de pessoas dizendo "que ebook!" no stories. Posta 1 reel mostrando o sumário de um dos ebooks. CTA: "Link na bio — acesso liberado só pra quem passou no teste."</p>
+<p><strong>Dia 7:</strong> Abre pra público geral (sem lista de espera). Preço normal. Posta carrossel com "antes e depois" de alguém que leu e aplicou. WhatsApp broadcast com "últimas vagas com desconto."</p>
+<p><strong>Dia 8:</strong> Oferta de pacote: 6 ebooks por R$97 (vs R$139,30 individuais). "Pra quem quer a biblioteca completa." Posta stories contando regressiva: "oferta expira em 48h."</p>
+</div>
+
+<div class="phase">
+<h4>🚀 FASE 3 — Aceleração (Dias 9-12)</h4>
+<p class="day">Objetivo: Maximizar conversão + prova social pesada</p>
+<p><strong>Dia 9:</strong> Depoimento em vídeo de um comprador satisfeito. Posta como reel + story. Envia no grupo VIP. Abre "últimas vagas" do pacote completo.</p>
+<p><strong>Dia 10:</strong> Live de 15 min no Instagram/YouTube: "3 lições dos Três Iniciados que mudaram minha vida." Venda indireta — no final, link pro ebook. Cria autoridade.</p>
+<p><strong>Dia 11:</strong> Último dia do pacote completo. Urgência real: "amanhã os ebooks individuais ficam R$29,90 cada." Envia lembrete pros leads que não compraram.</p>
+<p><strong>Dia 12:</strong> FATURAMENTO. Conta os resultados. Reajusta preços. Abre novos canais (Hotmart, Eduzz). Planeja o próximo ciclo.</p>
+</div>
+
+<div class="projection">
+<p style="color:var(--dim);margin-bottom:10px">Projeção Conservadora — Dia 12</p>
+<div class="val" id="projection-val">R$ 0</div>
+<p style="color:var(--dim);margin-top:10px;font-size:0.9em">Base: 50 leads aquecidos × 20% conversão × R$22,10 ticket médio</p>
+<p style="color:var(--dim);font-size:0.85em">Cenário otimista: 100 leads × 30% × R$24,90 = R$747</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+<p>© 2026 Três Iniciados — Hermes Corp.LTDA</p>
+<p style="margin-top:5px">Conhecimento que não se aplica é conhecimento morto.</p>
+</footer>
+
+<script>
+const answers = [2,1,2,0,1];
+const selected = [null,null,null,null,null];
+
+function selectOpt(el, idx) {
+    const q = el.closest('.q');
+    const qi = [...document.querySelectorAll('.q')].indexOf(q);
+    selected[qi] = idx;
+    q.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function checkGate() {
+    let score = 0;
+    for(let i=0;i<5;i++) {
+        if(selected[i] === answers[i]) score++;
+    }
+    document.getElementById('gate-section').style.display = 'none';
+    if(score >= 4) {
+        document.getElementById('gate-approved').style.display = 'block';
+        document.getElementById('gate-approved').className = 'gate-result approved';
+        localStorage.setItem('tres_iniciados_merit', 'approved');
+    } else {
+        document.getElementById('gate-reproved').style.display = 'block';
+        document.getElementById('gate-reproved').className = 'gate-result reproved';
+        document.getElementById('score').textContent = score;
+    }
+}
+
+function showBooks() {
+    document.getElementById('gate-approved').style.display = 'none';
+    document.getElementById('books-section').style.display = 'block';
+    document.getElementById('warmup-plan').style.display = 'block';
+    animateProjection();
+}
+
+function resetGate() {
+    document.getElementById('gate-reproved').style.display = 'none';
+    document.getElementById('gate-section').style.display = 'block';
+    selected.fill(null);
+    document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+}
+
+function animateProjection() {
+    const target = 221; // 50 * 0.20 * 22.10
+    const el = document.getElementById('projection-val');
+    let current = 0;
+    const step = Math.ceil(target / 30);
+    const interval = setInterval(() => {
+        current += step;
+        if(current >= target) { current = target; clearInterval(interval); }
+        el.textContent = 'R$ ' + current.toFixed(0).replace('.', ',');
+    }, 50);
+}
+
+// Auto-check if already approved
+if(localStorage.getItem('tres_iniciados_merit') === 'approved') {
+    document.getElementById('gate-section').style.display = 'none';
+    document.getElementById('books-section').style.display = 'block';
+    document.getElementById('warmup-plan').style.display = 'block';
+    setTimeout(animateProjection, 500);
+}
+</script>
+</body>
+</html>
