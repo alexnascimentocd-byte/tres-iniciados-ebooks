@@ -1,0 +1,32 @@
+{
+  "feca-sem-movimento": {
+    "name": "A Fé Sem Movimento é Morta — eBook",
+    "desc": "7 Leis para transformar pensamento em resultado. Baseado nas lições de Filipe Ret, Djonga e Delacruz. Para quem cansou de esperar e quer AGIR. Capítulos práticos com plano de ação de 30 dias. Autor: Três Iniciados. Acesso imediato após aprovação no teste de mérito.",
+    "price": 19.9
+  },
+  "rico-de-saude": {
+    "name": "Rico de Saúde e de Amigo — eBook",
+    "desc": "A verdadeira riqueza que ninguém te contou. 8 capítulos sobre saúde como ativo #1, poder da rede de apoio, paz financeira e abundância natural. Baseado em Delacruz. Autor: Três Iniciados. Só para quem passa no teste de mérito.",
+    "price": 19.9
+  },
+  "dono-da-caneta": {
+    "name": "O Dono da Caneta — eBook",
+    "desc": "Como suas palavras criam realidades. 9 capítulos sobre poder da escrita, copywriting alquímico, storytelling que converte e criação de manifesto. Baseado em Djonga. Autor: Três Iniciados. Acesso liberado após verificação de mérito.",
+    "price": 24.9
+  },
+  "vida-nao-e-posto": {
+    "name": "A Vida Não é o Que Eu Posto — eBook",
+    "desc": "Guia de autenticidade na era digital. 8 capítulos sobre o custo da performance, marca pessoal real, poder do silêncio produtivo e o paradoxo da visibilidade. Baseado em Ret. Autor: Três Iniciados. Só para quem tem mérito.",
+    "price": 19.9
+  },
+  "prosperar-nao-e-pecado": {
+    "name": "Prosperar Não é Pecado — eBook",
+    "desc": "Destravando a mentalidade de abundância. 9 capítulos sobre culpa de prosperar, programação de escassez, ouro interno e riqueza sem culpa. Baseado em Djonga. Autor: Três Iniciados. Verificação de mérito obrigatória.",
+    "price": 24.9
+  },
+  "obstinado": {
+    "name": "Obstinado — A Arte de Não Desistir — eBook",
+    "desc": "A arte de não desistir quando tudo contra. 10 capítulos sobre resiliência, consistência, humildade como poder e a meta de vencer. Baseado na música Obstinado. Autor: Três Iniciados. Acesso após aprovação no teste.",
+    "price": 24.9
+  }
+}

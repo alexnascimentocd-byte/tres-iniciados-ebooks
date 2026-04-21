@@ -26,12 +26,39 @@ body{background:#1a0a2e;color:#e8e0f0;font-family:'Lato',sans-serif;line-height:
 blockquote{border-left:3px solid #d4af37;padding:15px 25px;margin:25px 0;background:rgba(212,175,55,0.05);font-style:italic;color:#b8a0d0}
 .closing{padding:80px 0;text-align:center}
 .closing h2{font-family:'Playfair Display',serif;color:#d4af37;font-size:1.8em;margin-bottom:20px}
+
+.front-cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#0d0520 0%,#1a0a2e 30%,#2d1b4e 60%,#1a0a2e 100%);position:relative;overflow:hidden}
+.front-cover::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(212,175,55,0.08) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(106,13,173,0.08) 0%,transparent 50%)}
+.front-cover .symbol{font-size:5em;margin-bottom:20px;position:relative;z-index:1;filter:drop-shadow(0 0 20px rgba(212,175,55,0.4))}
+.front-cover h1{font-family:'Playfair Display',serif;font-size:2.8em;color:#d4af37;margin-bottom:10px;text-shadow:0 0 40px rgba(212,175,55,0.3);position:relative;z-index:1;max-width:700px}
+.front-cover h2{font-family:'Playfair Display',serif;font-size:1.3em;color:#b8a0d0;margin-bottom:30px;font-weight:400;position:relative;z-index:1}
+.front-cover .author{font-size:1.2em;color:#d4af37;letter-spacing:5px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:1}
+.front-cover .tagline{color:#8a7aa0;font-style:italic;max-width:500px;position:relative;z-index:1;font-size:1.05em;margin-top:10px}
+.front-cover .edition{position:absolute;bottom:30px;color:#6a5a7a;font-size:0.85em;letter-spacing:2px}
+.back-cover{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(180deg,#1a0a2e 0%,#0d0520 100%);padding:60px 40px;position:relative}
+.back-cover::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-top:2px solid rgba(212,175,55,0.2)}
+.back-cover .quote{font-family:'Playfair Display',serif;font-size:1.6em;color:#d4af37;max-width:600px;margin-bottom:30px;font-style:italic;line-height:1.5}
+.back-cover .about{color:#8a7aa0;max-width:550px;margin-bottom:30px;font-size:1.05em;line-height:1.8}
+.back-cover .hermes{color:#d4af37;font-size:2em;margin-bottom:15px}
+.back-cover .colophon{color:#6a5a7a;font-size:0.85em;letter-spacing:2px}
+.epilogue{padding:80px 40px;background:linear-gradient(180deg,#1a0a2e 0%,#251545 50%,#1a0a2e 100%);text-align:center}
+.epilogue h2{font-family:'Playfair Display',serif;color:#d4af37;font-size:2em;margin-bottom:30px}
+.epilogue p{color:#b8a0d0;font-size:1.05em;max-width:650px;margin:0 auto 20px;line-height:1.9}
+.epilogue .cta{margin-top:40px;padding:25px;background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.15);border-radius:12px;max-width:500px;margin-left:auto;margin-right:auto}
+.epilogue .cta p{color:#d4af37;font-weight:700;font-size:1.1em}
+
 .footer{text-align:center;padding:40px;color:#666;font-size:0.9em}
 </style>
 </head>
 <body>
-<div class="cover">
+<div class="front-cover">
 <div class="symbol">💎</div>
+<h1>Rico de Saúde e de Amigo</h1>
+<h2>A Verdadeira Riqueza Que Ninguém Te Contou</h2>
+<div class="author">Três Iniciados</div>
+<div class="tagline">Pra quem entende que a conta bancária não define valor.</div>
+<div class="edition">HERMES CORP.LTDA — 1ª Edição 2026</div>
+</div>
 <h1>Rico de Saúde e de Amigo</h1>
 <h2>A Verdadeira Riqueza Que Ninguém Te Contou</h2>
 <div class="author">Três Iniciados</div>
@@ -131,12 +158,28 @@ blockquote{border-left:3px solid #d4af37;padding:15px 25px;margin:25px 0;backgro
 <p>Descubra seu número. Planeje pra alcançá-lo. E quando chegar lá, não continua correndo — para e respira. A vida é curta demais pra passar toda ela correndo atrás de coisa que você não precisa pra impressionar gente que não se importa com você.</p>
 <p>Saúde. Amigos. Paz. O resto é detalhe.</p>
 </div>
+<div class="epilogue">
+<h2>Epílogo — O Ouro Invisível</h2>
+<p>Dinheiro compra cama, mas não compra sono. Compra remédio, mas não compra saúde. Compra companhia, mas não compra amizade. As coisas mais valiosas da vida não têm preço — têm valor.</p>
+<p>Delacruz sabia disso quando cantou. Ret sabia quando decidiu ser livre. Djonga sabe quando defende a comunidade. Os três entenderam que a verdadeira riqueza é invisível pros olhos mas palpável pro coração.</p>
+<p>A partir de agora, você também entende. E entender muda tudo. Porque quando você para de perseguir dinheiro como se fosse oxigênio, o dinheiro começa a te perseguir. Quando você para de medir seu valor pela conta bancária, seu valor REAL começa a crescer.</p>
+<p>Saúde. Amigos. Paz. O resto vem como consequência.</p>
+<div class="cta"><p>☿ A verdadeira riqueza é não precisar pensar em dinheiro ☿</p></div>
+</div>
+
 <div class="closing">
 <h2>☿ Assim como é acima, é abaixo ☿</h2>
 <p>A verdadeira riqueza não aparece no extrato bancário — aparece no sorriso ao acordar, na tranquilidade ao dormir, na certeza de que, independente do que acontecer, você tá cercado de gente que te ama e com saúde pra enfrentar qualquer coisa. Isso é abundância de verdade.</p>
 <p style="margin-top:30px;color:#d4af37;font-family:'Playfair Display',serif;font-size:1.3em">Três Iniciados — 2026</p>
 </div>
 <div class="footer">© 2026 Três Iniciados — Todos os direitos reservados.</div>
+</div>
+
+<div class="back-cover">
+<div class="hermes">☿</div>
+<div class="quote">"Sou rico de saúde e de amigo — quase não falo de dinheiro." — Delacruz</div>
+<div class="about">Este ebook faz parte da Biblioteca de Conhecimento Hermético dos Três Iniciados. Sabedoria extraída dos maiores poetas-rappers do Brasil, transmutada em conhecimento aplicável para transformação pessoal e prosperidade real.</div>
+<div class="colophon">TRÊS INICIADOS — HERMES CORP.LTDA<br>© 2026 — Todos os direitos reservados<br>ISBN Digital: 978-65-00-7143</div>
 </div>
 </body>
 </html>
